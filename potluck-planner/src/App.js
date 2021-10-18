@@ -28,18 +28,34 @@ const initialUser = {
   email: "johndoe@email.com",
 };
 
+const initialUsers = [];
+
 function App() {
+  const [event, setEvent] = useState(initialEvent);
   const [events, setEvents] = useState([{}]);
   const [user, setUser] = useState(initialUser);
-  const [event, setEvent] = useState(initialEvent);
+  const [users, setUsers] = useState(initialUsers);
   const { push } = useHistory();
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/users/`)
+      .then((res) => {
+        setUsers(...users);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   const handleUserSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
+      //need to add proper url
       .put("/users/", user)
       .then((res) => {
         // console.log("submitted, returned: ", res);
+        setUsers(...users, user);
         push("/dashboard");
       })
       .catch((err) => {
@@ -49,6 +65,7 @@ function App() {
   const handleEventSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
+      //need to add proper url
       .put("/events/", event)
       .then((res) => {
         // console.log("submitted, returned: ", res);
