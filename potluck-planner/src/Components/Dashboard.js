@@ -7,7 +7,8 @@ const Dashboard = () => {
   const event = useContext(EventContext);
   return (
     <div>
-      <h1>Dashboard under construction</h1>
+      <h1>{event.name}</h1>
+      <h2>{user.firstName}</h2>
     </div>
   );
 };
