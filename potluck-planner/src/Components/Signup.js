@@ -27,9 +27,9 @@ const Signup = () => {
   }
   const onChange = evt => {
     /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
-    const { name, value, checked, type } = evt.target;
+    const { name, value} = evt.target;
     
-    const valueToUse = type === 'checkbox' ? checked : value;    
+      
       setFormValues({
         ...formValues,
         [name]: value 
@@ -40,52 +40,53 @@ const Signup = () => {
   return (
     <div>
       <h1>Signup Form goes here</h1>
-      <form  onSubmit={onSubmit}>
+      </div>
+    //   <form  onSubmit={onSubmit}>
       
         
-        <button>signup</button>
+    //     <button>signup</button>
 
         
 
-      <div>
-        <h4>signup information</h4>
+    //   <div>
+    //     <h4>signup information</h4>
 
         
-        <label>First Name&nbsp;
-          <input
-          onChange={onChange}
-            value={value.firstName}
-            name='firstName'
-            type='text'
-          />
-        </label>
-        <label>Last Name&nbsp;
-          <input
-          onChange={onChange}
-            value={values.lastName}
-            name='lastName'
-            type='text'
-          />
-        </label>
-        <label>Email
-          <input
-          onChange={onChange}
-            value={values.email}
-            name='email'
-            type='text'
-          />
-        </label>
-        <label>Password&nbsp;
-          <input
-            onChange={onChange}
-            value={values.password}
-            name='password'
-            type='password'
-          />
-        </label>
-        </div>
-        </form> 
-    </div>
+    //     <label>First Name&nbsp;
+    //       <input
+    //       onChange={onChange}
+    //         value={value.firstName}
+    //         name='firstName'
+    //         type='text'
+    //       />
+    //     </label>
+    //     <label>Last Name&nbsp;
+    //       <input
+    //       onChange={onChange}
+    //         value={values.lastName}
+    //         name='lastName'
+    //         type='text'
+    //       />
+    //     </label>
+    //     <label>Email
+    //       <input
+    //       onChange={onChange}
+    //         value={values.email}
+    //         name='email'
+    //         type='text'
+    //       />
+    //     </label>
+    //     <label>Password&nbsp;
+    //       <input
+    //         onChange={onChange}
+    //         value={values.password}
+    //         name='password'
+    //         type='password'
+    //       />
+    //     </label>
+    //     </div>
+    //     </form> 
+    // </div>
   )
 };
 
