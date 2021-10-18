@@ -11,22 +11,34 @@ import Logout from "./Components/Logout";
 
 import { EventContext } from "./contexts/EventContext";
 import { UserContext } from "./contexts/UserContext";
+const initialEvent = {
+  name: "Test Name",
+  date: "Oct 18, 2021",
+  location: "Lambdaville",
+  foodItems: ["pizza", "oreos", "gabagool"],
+};
+
+const initialUser = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "johndoe@email.com",
+};
 
 function App() {
   const [events, setEvents] = useState([{}]);
-  const [user, setUser] = useState({});
-  const [event, setEvent] = useState({});
+  const [user, setUser] = useState(initialUser);
+  const [event, setEvent] = useState(initialEvent);
 
   return (
     <div className="App">
-      <UserContext.Provider>
+      <UserContext.Provider value={user}>
         <Header />
         <Switch>
           <PrivateRoute path="/logout">
             <Logout />
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
-            <EventContext.Provider value={{ events, user, event }}>
+            <EventContext.Provider value={(events, event)}>
               <Dashboard />
             </EventContext.Provider>
           </PrivateRoute>
