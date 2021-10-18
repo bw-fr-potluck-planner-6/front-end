@@ -9,27 +9,38 @@ import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import Logout from "./Components/Logout";
 
+import { EventContext } from "./contexts/EventContext";
+import { UserContext } from "./contexts/UserContext";
+
 function App() {
+  const [events, setEvents] = useState([{}]);
+  const [user, setUser] = useState({});
+  const [event, setEvent] = useState({});
+
   return (
     <div className="App">
-      <Header />
-      <Switch>
-        <PrivateRoute path="/logout">
-          <Logout />
-        </PrivateRoute>
-        <PrivateRoute path="/dashboard">
-          <Dashboard />
-        </PrivateRoute>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-        <Route exact path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <UserContext.Provider>
+        <Header />
+        <Switch>
+          <PrivateRoute path="/logout">
+            <Logout />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard">
+            <EventContext.Provider value={{ events, user, event }}>
+              <Dashboard />
+            </EventContext.Provider>
+          </PrivateRoute>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </UserContext.Provider>
     </div>
   );
 }
