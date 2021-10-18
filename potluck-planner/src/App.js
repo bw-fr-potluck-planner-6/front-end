@@ -8,7 +8,8 @@ import Header from "./Components/Header";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import Logout from "./Components/Logout";
-
+import CreateEvent from "./Components/CreateEvent";
+import EditEvent from "./Components/EditEvent";
 import { EventContext } from "./contexts/EventContext";
 import { UserContext } from "./contexts/UserContext";
 const initialEvent = {
@@ -50,6 +51,12 @@ function App() {
           </Route>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/create">
+            <CreateEvent />
+          </Route>
+          <Route path="/edit">
+            <EditEvent />
           </Route>
         </Switch>
       </UserContext.Provider>
