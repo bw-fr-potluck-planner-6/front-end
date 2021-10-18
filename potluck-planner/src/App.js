@@ -13,12 +13,12 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/logout">
+        <PrivateRoute path="/logout">
           <Logout />
-        </Route>
-        <Route path="/dashboard">
+        </PrivateRoute>
+        <PrivateRoute path="/dashboard">
           <Dashboard />
-        </Route>
+        </PrivateRoute>
         <Route path="/login">
           <Login />
         </Route>
