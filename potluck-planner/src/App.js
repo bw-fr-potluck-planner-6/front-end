@@ -1,5 +1,6 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PrivateRoute from "./Components/PrivateRoute";
 import Home from "./Components/Home";
 import Dashboard from "./Components/Dashboard";
@@ -13,12 +14,12 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <PrivateRoute path="/logout">
+        <Route path="/logout">
           <Logout />
-        </PrivateRoute>
-        <PrivateRoute path="/dashboard">
+        </Route>
+        <Route path="/dashboard">
           <Dashboard />
-        </PrivateRoute>
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
