@@ -1,7 +1,27 @@
 import React, { useState, useContext } from "react";
 import { EventContext } from "../contexts/EventContext";
 
+
 export default function EditEvent(props) {
+
+  const {
+    
+    submit,
+    change,
+    
+  } = props
+  
+  const onSubmit = evt => {
+    evt.preventDefault()
+    submit()
+  }
+  
+  const onChange = evt => {
+    const { name, value, checked, type } = evt.target;
+    const valueToUse = type === 'checkbox' ? checked : value;
+    change(name, valueToUse);
+  }
+
   return (
     <form className='form container' >
         <div>
