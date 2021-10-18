@@ -21,8 +21,8 @@ const Signup = () => {
       password: formValues.password.trim(),
 
     }
-    
-     setSignup([signup, ...newSignup]);
+    console.log(newSignup);
+     setSignup(newSignup);
      setFormValues(initialFormValues);
   }
   const onChange = evt => {
@@ -40,53 +40,62 @@ const Signup = () => {
   return (
     <div>
       <h1>Signup Form goes here</h1>
-      </div>
-    //   <form  onSubmit={onSubmit}>
+      
+      <form  onSubmit={onSubmit}>
       
         
-    //     <button>signup</button>
+        <button>signup</button>
 
         
 
-    //   <div>
-    //     <h4>signup information</h4>
+      <div>
+        <h4>signup information</h4>
 
+      <div>
+        <label>First Name&nbsp;
+          <input
+          onChange={onChange}
+            value={formValues.firstName}
+            name='firstName'
+            type='text'
+          />
+    
+        </label>
+        </div>
+        <div>
+        <label>Last Name&nbsp;
+          <input
+          onChange={onChange}
+            value={formValues.lastName}
+            name='lastName'
+            type='text'
+          />
         
-    //     <label>First Name&nbsp;
-    //       <input
-    //       onChange={onChange}
-    //         value={value.firstName}
-    //         name='firstName'
-    //         type='text'
-    //       />
-    //     </label>
-    //     <label>Last Name&nbsp;
-    //       <input
-    //       onChange={onChange}
-    //         value={values.lastName}
-    //         name='lastName'
-    //         type='text'
-    //       />
-    //     </label>
-    //     <label>Email
-    //       <input
-    //       onChange={onChange}
-    //         value={values.email}
-    //         name='email'
-    //         type='text'
-    //       />
-    //     </label>
-    //     <label>Password&nbsp;
-    //       <input
-    //         onChange={onChange}
-    //         value={values.password}
-    //         name='password'
-    //         type='password'
-    //       />
-    //     </label>
-    //     </div>
-    //     </form> 
-    // </div>
+        </label>
+        </div>
+        <div>
+        <label>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+          onChange={onChange}
+            value={formValues.email}
+            name='email'
+            type='text'
+          />
+        </label>
+        </div>
+        <div>
+        <label>Password&nbsp;&nbsp;
+          <input
+            onChange={onChange}
+            value={formValues.password}
+            name='password'
+            type='password'
+          />
+        </label>
+        </div>
+      </div>
+      </form> 
+    </div>
   )
 };
 
