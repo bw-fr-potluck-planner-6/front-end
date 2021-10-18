@@ -1,7 +1,7 @@
 import React from "react";
 
 const EditEvent = () => {
-  return <div></div>;
+  return <div>This will be the same form as add event</div>;
 };
 
 export default EditEvent;
