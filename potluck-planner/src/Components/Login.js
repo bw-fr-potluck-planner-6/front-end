@@ -15,7 +15,7 @@ const Login = () => {
           Password:
           <input name="password" type="password" />
         </label>
-        <Button>Login</Button>
+        <Button variant="contained">Login</Button>
       </form>
     </div>
   );
