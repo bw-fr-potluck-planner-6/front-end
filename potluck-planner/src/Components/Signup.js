@@ -2,7 +2,7 @@ import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router";
 import useForm from "../hooks/useForm";
-import { Button, Paper, Box } from "@mui/material";
+import { Button, Paper, Box, Typography } from "@mui/material";
 
 const Signup = () => {
   const formValues = useForm({});
@@ -33,7 +33,15 @@ const Signup = () => {
       }}
     >
       {" "}
-      <h2>Create Account</h2>
+      <Typography
+        component="h1"
+        variant="h3"
+        sx={{
+          marginBottom: "10px",
+        }}
+      >
+        Create Account
+      </Typography>
       <Paper
         elevation={10}
         sx={{
@@ -41,9 +49,17 @@ const Signup = () => {
           width: "60%",
         }}
       >
-        <form onSubmit={handleUserSubmit}>
+        <form
+          style={{
+            display: "flex",
+            flexFlow: "column",
+            alignItems: "center",
+            paddingTop: "75px",
+          }}
+          onSubmit={handleUserSubmit}
+        >
           <label>
-            First Name:
+            First Name:{" "}
             <input
               onChange={formValues.handleChange}
               value={formValues.values.firstName}
@@ -52,7 +68,7 @@ const Signup = () => {
             />
           </label>
           <label>
-            Last Name:
+            Last Name:{" "}
             <input
               onChange={formValues.handleChange}
               value={formValues.values.lastName}
@@ -61,7 +77,7 @@ const Signup = () => {
             />
           </label>
           <label>
-            Email:
+            Email:{" "}
             <input
               onChange={formValues.handleChange}
               value={formValues.values.email}
@@ -70,7 +86,7 @@ const Signup = () => {
             />
           </label>
           <label>
-            Password:
+            Password:{" "}
             <input
               onChange={formValues.handleChange}
               value={formValues.values.password}
@@ -78,7 +94,15 @@ const Signup = () => {
               type="password"
             />
           </label>
-          <Button variant="contained">Submit</Button>
+          <Button
+            sx={{
+              width: "100px",
+              marginTop: "10px",
+            }}
+            variant="contained"
+          >
+            Submit
+          </Button>
         </form>
       </Paper>
     </Box>
