@@ -5,7 +5,7 @@ const Logout = () => {
   const { push } = useHistory();
 
   useEffect(() => {
-    push("/");
+    push("/login");
   }, []);
 
   return <div></div>;

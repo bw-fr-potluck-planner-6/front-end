@@ -1,34 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router";
-const initialSignup = [];
-const initialFormValues = {
-  ///// TEXT INPUTS /////
-  firstName: "",
-  lastName: "",
-  username: "",
-  email: "",
-  password: "",
-};
+import useForm from "../hooks/useForm";
+import { Button } from "@mui/material";
+
 const Signup = () => {
-  const [formValues, setFormValues] = useState(initialFormValues);
+  const formValues = useForm({});
   const { push } = useHistory();
-
-  // const onSubmit = evt => {
-  //   evt.preventDefault()
-  //   const newSignup = {
-  //     firstName: formValues.firstName.trim(),
-  //     lastName: formValues.lastName.trim(),
-  //     email: formValues.email.trim(),
-  //     password: formValues.password.trim(),
-
-  //   }
 
   const handleUserSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
       //need to add proper url
-      .post("/users/", formValues)
+      .post("/users/", formValues.values)
       .then((res) => {
         // console.log("submitted, returned: ", res);
 
@@ -39,71 +23,48 @@ const Signup = () => {
       });
   };
 
-  const onChange = (evt) => {
-    /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
-    const { name, value } = evt.target;
-
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
   return (
     <div>
-      <h1>Signup Form goes here</h1>
-
       <form onSubmit={handleUserSubmit}>
-        <button>signup</button>
+        <h3>Signup Information</h3>
 
-        <div>
-          <h4>signup information</h4>
-
-          <div>
-            <label>
-              First Name&nbsp;
-              <input
-                onChange={onChange}
-                value={formValues.firstName}
-                name="firstName"
-                type="text"
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Last Name&nbsp;
-              <input
-                onChange={onChange}
-                value={formValues.lastName}
-                name="lastName"
-                type="text"
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input
-                onChange={onChange}
-                value={formValues.email}
-                name="email"
-                type="text"
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Password&nbsp;&nbsp;
-              <input
-                onChange={onChange}
-                value={formValues.password}
-                name="password"
-                type="password"
-              />
-            </label>
-          </div>
-        </div>
+        <label>
+          First Name:
+          <input
+            onChange={formValues.handleChange}
+            value={formValues.values.firstName}
+            name="firstName"
+            type="text"
+          />
+        </label>
+        <label>
+          Last Name:
+          <input
+            onChange={formValues.handleChange}
+            value={formValues.values.lastName}
+            name="lastName"
+            type="text"
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            onChange={formValues.handleChange}
+            value={formValues.values.email}
+            name="email"
+            type="text"
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            onChange={formValues.handleChange}
+            value={formValues.values.password}
+            name="password"
+            type="password"
+          />
+        </label>
+        <Button variant="contained">Submit</Button>
       </form>
     </div>
   );

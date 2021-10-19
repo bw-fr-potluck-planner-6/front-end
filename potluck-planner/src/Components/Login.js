@@ -1,28 +1,22 @@
 import React from "react";
+import { Button } from "@mui/material";
 
 const Login = () => {
   return (
     <div>
       <h1>User Login</h1>
-      <form  >
-      <button>login</button>
-      <div>
-        <label>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input
-            name='email'
-            type='text'
-          />
+      <form>
+        <label>
+          Email:
+          <input name="email" type="text" />
         </label>
-        <div>
-        <label>Password&nbsp;&nbsp;
-          <input
-            name='password'
-            type='password'
-          />
+
+        <label>
+          Password:
+          <input name="password" type="password" />
         </label>
-        </div>
-        </div>
-        </form> 
+        <Button>Login</Button>
+      </form>
     </div>
   );
 };
