@@ -3,7 +3,6 @@ import { UserContext } from "../contexts/UserContext";
 import { EventContext } from "../contexts/EventContext";
 const Dashboard = () => {
   const user = useContext(UserContext);
-  const events = useContext(EventContext);
   const event = useContext(EventContext);
   return (
     <div>
