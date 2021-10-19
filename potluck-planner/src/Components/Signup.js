@@ -27,7 +27,6 @@ const Signup = () => {
     <div>
       <form onSubmit={handleUserSubmit}>
         <h3>Signup Information</h3>
-
         <label>
           First Name:
           <input
@@ -71,22 +70,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-//   axios.get('http://buddies.com/api/friends')
-//     .then(res => {
-//       setFriends(res.data);
-//     }).catch(err => {
-//       console.error(err);
-//     })
-// }
-
-// const postNewFriend = newFriend => {
-
-//   axios.post('http://buddies.com/api/friends', newFriend)
-//     .then(res => {
-//       setFriends([res.data, ...friends]);
-//     }).catch(err => {
-//       console.error(err);
-//     }).finally(() => {
-//       setFormValues(initialFormValues);
-//     })
