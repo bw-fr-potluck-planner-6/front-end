@@ -28,7 +28,7 @@ const Login = () => {
             type="password"
           />
         </label>
-        <Button>Login</Button>
+        <Button variant="contained">Login</Button>
       </form>
     </div>
   );
