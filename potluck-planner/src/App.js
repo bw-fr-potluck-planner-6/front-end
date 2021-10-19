@@ -13,14 +13,6 @@ import EditEvent from "./Components/EditEvent";
 import { EventContext } from "./contexts/EventContext";
 import { UserContext } from "./contexts/UserContext";
 import axiosWithAuth from "./utils/axiosWithAuth";
-import { useHistory } from "react-router";
-
-const initialEvent = {
-  name: "Test Name",
-  date: "Oct 18, 2021",
-  location: "Lambdaville",
-  foodItems: ["pizza", "oreos", "gabagool"],
-};
 
 const initialUser = {
   firstName: "John",
@@ -28,64 +20,31 @@ const initialUser = {
   email: "johndoe@email.com",
 };
 
-const initialUsers = [];
-
 function App() {
-  const [event, setEvent] = useState(initialEvent);
   const [events, setEvents] = useState([{}]);
   const [user, setUser] = useState(initialUser);
-  const [users, setUsers] = useState(initialUsers);
-  const { push } = useHistory();
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/users/`)
+      .get(`/user/`)
       .then((res) => {
-        setUsers(...users);
+        setUser(res);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
-  const handleUserSubmit = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      //need to add proper url
-      .put("/users/", user)
-      .then((res) => {
-        // console.log("submitted, returned: ", res);
-        setUsers(...users, user);
-        push("/dashboard");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-  const handleEventSubmit = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      //need to add proper url
-      .put("/events/", event)
-      .then((res) => {
-        // console.log("submitted, returned: ", res);
-        push("/dashboard");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
   return (
     <div className="App">
-      <UserContext.Provider value={(user, handleUserSubmit)}>
+      <UserContext.Provider value={(user, setUser)}>
         <Header />
         <Switch>
           <PrivateRoute path="/logout">
             <Logout />
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
-            <EventContext.Provider value={(events, event, handleEventSubmit)}>
+            <EventContext.Provider value={(events, setEvents)}>
               <Dashboard />
             </EventContext.Provider>
           </PrivateRoute>

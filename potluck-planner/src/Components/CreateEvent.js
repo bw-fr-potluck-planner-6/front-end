@@ -1,85 +1,97 @@
-import React,{ useState } from "react";
+import React, { useState, useContext } from "react";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { useHistory } from "react-router";
+const initialFormValues = {
+  ///// TEXT INPUTS /////
+  name: "",
+  date: "",
+  time: "",
+  location: "",
+};
 
 export default function CreateEvent(props) {
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const { push } = useHistory();
 
-  const {
-    
-    submit,
-    change,
-    
-  } = props
-
-  const onSubmit = evt => {
-    evt.preventDefault()
-    submit()
-  }
-
-  const onChange = evt => {
-    const { name, value, checked, type } = evt.target;
-    const valueToUse = type === 'checkbox' ? checked : value;
-    change(name, valueToUse);
-  }
-
-
-    return (
-      <form className='form container' >
-        <div>
-          <h1>Event form goes here.</h1>
-          {/* name section */}
-
-          <div className='name'>
-            <label>Name
-              <input
-                onChange={onChange}
-                value='name'
-                type='text'
-                id='name'
-              />  
-            </label>
-          </div>
-
-          {/* date section */}
-
-          <div className='date container'> 
-            <label>Date
-              <input
-                 onChange={onChange}
-                value='date'
-                 type='date'
-                 id='date'
-             />
-            </label>
-          </div>
-
-          {/* time section */}
-
-          <div className='time container'>
-            <label>Time 
-              <input
-                onChange={onChange}
-                value='time'
-                type='time'
-                id='time'
-              />
-            </label> 
-          </div>
-
-          <div className='location'>
-            <label>Location
-              <input
-                onChange={onChange}
-                value='location'
-                type='text'
-                id='location'
-              />  
-            </label>
-          </div>
-          
-          <button>text submit</button>
-        </div>
-      </form>
-    );
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
+  const handleEventSubmit = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      //need to add proper url
+      .post("/events/", formValues)
+      .then((res) => {
+        // console.log("submitted, returned: ", res);
 
+        push("/dashboard");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
+  return (
+    <form onSubmit={handleEventSubmit} className="form container">
+      <div>
+        <h1>Event form goes here.</h1>
+        {/* name section */}
+
+        <div className="name">
+          <label>
+            Name
+            <input
+              onChange={handleChange}
+              value={formValues.name}
+              type="text"
+              name="name"
+            />
+          </label>
+        </div>
+
+        {/* date section */}
+
+        <div className="date container">
+          <label>
+            Date
+            <input
+              onChange={handleChange}
+              value={formValues.date}
+              type="date"
+              name="date"
+            />
+          </label>
+        </div>
+
+        {/* time section */}
+
+        <div className="time container">
+          <label>
+            Time
+            <input
+              onChange={handleChange}
+              value={formValues.time}
+              type="time"
+              name="time"
+            />
+          </label>
+        </div>
+
+        <div className="location">
+          <label>
+            Location
+            <input
+              onChange={handleChange}
+              value={formValues.location}
+              type="text"
+              name="location"
+            />
+          </label>
+        </div>
+
+        <button>text submit</button>
+      </div>
+    </form>
+  );
+}
