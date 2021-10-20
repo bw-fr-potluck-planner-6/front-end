@@ -47,7 +47,7 @@ const Header = () => {
                 onClick={handleLog}
                 variant="contained"
                 component={Link}
-                to="/dashboard"
+                to="/login"
                 endIcon={<LoginIcon />}
               >
                 <Typography variant="h8">Login</Typography>
