@@ -7,40 +7,55 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 const Home = () => {
   return (
     <div className="background">
-      <Typography variant="h1" color="primary">
-        Potluck-Home Page
-      </Typography>
-      <Typography variant="h4" color="secondary">
-        Potluck Description
-      </Typography>
-
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-evenly",
-          alignItems: "center",
-          marginTop: "100px",
+          alignItems: "flex-start",
+          marginTop: "200px",
         }}
       >
-        <Paper
-          sx={{
+        <div
+          style={{
+            width: "50%",
             height: "40vh",
-            width: "30%",
-            padding: "0 20px",
           }}
-        ></Paper>
+        >
+          <Typography component="h1" variant="h3" color="white" mb={3}>
+            Potluck Planner
+          </Typography>
+          <Typography
+            variant="body1"
+            color="white"
+            sx={{
+              lineHeight: "2.5",
+              fontSize: "1.4rem",
+            }}
+          >
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis
+            optio, eveniet incidunt placeat aspernatur, culpa facere, itaque non
+            recusandae labore quo quas esse architecto error amet quidem a
+            obcaecati consequuntur!
+          </Typography>
+        </div>
         <Paper
           sx={{
             display: "flex",
             flexFlow: "column wrap",
             alignItems: "center",
             justifyContent: "space-evenly",
-            height: "40vh",
+            height: "30vh",
             width: "30%",
             padding: "0 20px",
+            opacity: "0.8",
           }}
         >
-          <Typography variant="p" component="p">
+          <Typography
+            variant="body1"
+            sx={{
+              justifyContent: "flex-start",
+            }}
+          >
             Ready to get started planning your potlucks?
           </Typography>
           <ButtonGroup>

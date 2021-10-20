@@ -3,16 +3,15 @@ import useForm from "../hooks/useForm";
 import { useHistory } from "react-router";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { Button, Paper, Box, Typography, TextField } from "@mui/material";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DateTimePicker from '@mui/lab/DateTimePicker';
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DateTimePicker from "@mui/lab/DateTimePicker";
 
 export default function EditEvent() {
   //ask about why empty object is needed
   const formValues = useForm({});
   const { push } = useHistory();
   const [value, setValue] = React.useState(new Date());
-
 
   const handleEventSubmit = (e) => {
     e.preventDefault();
@@ -31,31 +30,31 @@ export default function EditEvent() {
 
   return (
     <Box
-    sx={{
-      display:"flex",
-      alignItems: "center",
-      flexFlow: "column wrap",
-      marginTop: "100px",
-    }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        flexFlow: "column wrap",
+        marginTop: "100px",
+      }}
     >
       <Paper
         elavation={10}
         sx={{
           height: "55vh",
           width: "50%",
-          minHeight: "500px"
+          minHeight: "500px",
         }}
       >
         <Typography
           component="h1"
-          variant="h4"
+          variant="h3"
           sx={{
             marginTop: "30px",
           }}
         >
           Edit an Event
         </Typography>
-        <form 
+        <form
           style={{
             display: "flex",
             flexFlow: "column wrap",
@@ -63,7 +62,8 @@ export default function EditEvent() {
             gap: "20px",
             paddingTop: "30px",
           }}
-        onSubmit={handleEventSubmit}>
+          onSubmit={handleEventSubmit}
+        >
           <label>
             <TextField
               onChange={formValues.handleChange}
@@ -71,7 +71,7 @@ export default function EditEvent() {
               type="text"
               name="name"
               label="Name"
-              variant= "outlined"
+              variant="outlined"
             />
           </label>
           <label>
@@ -81,7 +81,7 @@ export default function EditEvent() {
               type="text"
               name="location"
               label="Location"
-              variant= "outlined"
+              variant="outlined"
             />
           </label>
           <label>
@@ -93,16 +93,19 @@ export default function EditEvent() {
                 onChange={(newValue) => {
                   setValue(newValue);
                 }}
-              />  
+              />
             </LocalizationProvider>
           </label>
-         
+
           <Button
-          sx={{
-            width: "100px",
-            marginTop:"10px",
-          }}
-          variant="contained">Submit Edit</Button>
+            sx={{
+              width: "100px",
+              marginTop: "10px",
+            }}
+            variant="contained"
+          >
+            Finish
+          </Button>
         </form>
       </Paper>
     </Box>
