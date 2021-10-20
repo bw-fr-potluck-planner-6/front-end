@@ -15,6 +15,7 @@ const Login = () => {
     }}
     > 
       <Paper
+      elavation={10}
       sx={{
         width: "50%",
         height:"40vh",
