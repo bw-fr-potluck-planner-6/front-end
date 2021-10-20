@@ -37,6 +37,7 @@ const Signup = () => {
         sx={{
           height: "55vh",
           width: "50%",
+          minHeight: "400px",
         }}
       >
         <Typography
