@@ -1,13 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Paper, Box, Typography } from "@mui/material";
 
 const Home = () => {
   return (
     <div className="background">
-<<<<<<< HEAD
-      <h1>Potluck-Home Page</h1>
-      <p>Potluck Description</p>
-=======
       <Typography variant="h1" color="primary">
         Potluck-Home Page
       </Typography>
@@ -15,7 +12,6 @@ const Home = () => {
         Potluck Description
       </Typography>
 
->>>>>>> 33f8ccf2336534652fbb9571da71b98bf2786b39
       <Box
         sx={{
           display: "flex",
@@ -30,6 +26,8 @@ const Home = () => {
             margin: "10px",
           }}
           variant="contained"
+          component={Link}
+          to="/signup"
         >
           Signup
         </Button>
@@ -39,6 +37,8 @@ const Home = () => {
             margin: "10px",
           }}
           variant="contained"
+          component={Link}
+          to="/login"
         >
           login
         </Button>
