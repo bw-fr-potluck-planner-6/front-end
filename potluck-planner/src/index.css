@@ -14,3 +14,13 @@ code {
 Link {
   text-decoration: none;
 }
+body {
+  height: 100vh;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.imgur.com/kHUXjtv.jpg')
+}
+
+/* ("https://images.unsplash.com/photo-1493770348161-369560ae357d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZHxlbnwwfDB8MHx8&ixlib=rb-1.2.1"); */

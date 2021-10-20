@@ -32,29 +32,28 @@ const Signup = () => {
         marginTop: "100px",
       }}
     >
-      {" "}
-      <Typography
-        component="h1"
-        variant="h3"
-        sx={{
-          marginBottom: "50px",
-        }}
-      >
-        Create Account
-      </Typography>
       <Paper
         elevation={10}
         sx={{
-          height: "45vh",
-          width: "60%",
+          height: "50vh",
+          width: "50%",
         }}
       >
+        <Typography
+          component="h1"
+          variant="h3"
+          sx={{
+            marginTop: "30px",
+          }}
+        >
+          Create Account
+        </Typography>
         <form
           style={{
             display: "flex",
             flexFlow: "column",
             alignItems: "center",
-            paddingTop: "60px",
+            paddingTop: "30px",
           }}
           onSubmit={handleUserSubmit}
         >

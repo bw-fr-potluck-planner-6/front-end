@@ -20,7 +20,6 @@ const Header = () => {
 
   const handleLog = () => {
     setIsLoggedIn(!isLoggedIn);
-    push("/");
   };
 
   return (
