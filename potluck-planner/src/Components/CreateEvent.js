@@ -1,13 +1,19 @@
-import React from "react";
+import * as React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router";
 import useForm from "../hooks/useForm";
-import { Button } from "@mui/material";
+import { Button, Paper, Box, Typography, TextField } from "@mui/material";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+
 
 export default function CreateEvent() {
   //ask about why empty object is needed
   const formValues = useForm({});
   const { push } = useHistory();
+  const [value, setValue] = React.useState(new Date());
+
 
   const handleEventSubmit = (e) => {
     e.preventDefault();
@@ -25,47 +31,81 @@ export default function CreateEvent() {
   };
 
   return (
-    <div>
-      <h2>Add an Event</h2>
-      <form onSubmit={handleEventSubmit}>
-        <label>
-          Name:
-          <input
-            onChange={formValues.handleChange}
-            value={formValues.values.name}
-            type="text"
-            name="name"
-          />
-        </label>
-        <label>
-          Date:
-          <input
-            onChange={formValues.handleChange}
-            value={formValues.values.date}
-            type="date"
-            name="date"
-          />
-        </label>
-        <label>
-          Time:
-          <input
-            onChange={formValues.handleChange}
-            value={formValues.values.time}
-            type="time"
-            name="time"
-          />
-        </label>
-        <label>
-          Location:
-          <input
-            onChange={formValues.handleChange}
-            value={formValues.values.location}
-            type="text"
-            name="location"
-          />
-        </label>
-        <Button variant="contained">Submit</Button>
-      </form>
-    </div>
+    <Box
+    sx={{
+      display:"flex",
+      alignItems: "center",
+      flexFlow: "column wrap",
+      marginTop: "100px",
+    }}
+    >
+      <Paper
+        elavation={10}
+        sx={{
+          height: "55vh",
+          width: "50%",
+          minHeight: "500px"
+        }}
+      >
+        <Typography
+          component="h1"
+          variant="h4"
+          sx={{
+            marginTop: "30px",
+          }}
+        >
+          Add an Event
+        </Typography>
+        <form 
+          style={{
+            display: "flex",
+            flexFlow: "column wrap",
+            alignItems: "center",
+            gap: "20px",
+            paddingTop: "30px",
+          }}
+        onSubmit={handleEventSubmit}>
+          <label>
+            <TextField
+              onChange={formValues.handleChange}
+              value={formValues.values.name}
+              type="text"
+              name="name"
+              label="Name"
+              variant= "outlined"
+            />
+          </label>
+          <label>
+            <TextField
+              onChange={formValues.handleChange}
+              value={formValues.values.name}
+              type="text"
+              name="location"
+              label="Location"
+              variant= "outlined"
+            />
+          </label>
+          <label>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DateTimePicker
+                renderInput={(props) => <TextField {...props} />}
+                label="Date & Time"
+                value={value}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                }}
+              />  
+            </LocalizationProvider>
+          </label>
+         
+          <Button
+          sx={{
+            width: "100px",
+            marginTop:"10px",
+          }}
+          variant="contained">Submit</Button>
+        </form>
+      </Paper>
+    </Box>
   );
 }
