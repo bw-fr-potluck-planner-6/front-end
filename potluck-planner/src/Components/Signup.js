@@ -28,7 +28,7 @@ const Signup = () => {
       sx={{
         display: "flex",
         alignItems: "center",
-        flexFlow: "column",
+        flexFlow: "column wrap",
         marginTop: "100px",
       }}
     >
@@ -37,7 +37,7 @@ const Signup = () => {
         component="h1"
         variant="h3"
         sx={{
-          marginBottom: "10px",
+          marginBottom: "50px",
         }}
       >
         Create Account
@@ -54,7 +54,7 @@ const Signup = () => {
             display: "flex",
             flexFlow: "column",
             alignItems: "center",
-            paddingTop: "75px",
+            paddingTop: "60px",
           }}
           onSubmit={handleUserSubmit}
         >
