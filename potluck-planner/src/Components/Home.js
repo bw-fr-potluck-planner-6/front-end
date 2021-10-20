@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Paper, Box, Typography } from "@mui/material";
+import { Button, Paper, Box, Typography, ButtonGroup } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 const Home = () => {
   return (
@@ -24,40 +26,42 @@ const Home = () => {
           sx={{
             height: "40vh",
             width: "30%",
+            padding: "0 20px",
+          }}
+        ></Paper>
+        <Paper
+          sx={{
+            display: "flex",
+            flexFlow: "column wrap",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            height: "40vh",
+            width: "30%",
+            padding: "0 20px",
           }}
         >
           <Typography variant="p" component="p">
             Ready to get started planning your potlucks?
           </Typography>
-          <Button
-            sx={{
-              width: "100px",
-              margin: "10px",
-            }}
-            variant="contained"
-            component={Link}
-            to="/signup"
-          >
-            Signup
-          </Button>
-          <Button
-            sx={{
-              width: "100px",
-              margin: "10px",
-            }}
-            variant="contained"
-            component={Link}
-            to="/login"
-          >
-            login
-          </Button>
+          <ButtonGroup>
+            <Button
+              variant="contained"
+              component={Link}
+              to="/signup"
+              endIcon={<AssignmentIcon />}
+            >
+              <Typography variant="h8">Sign up</Typography>
+            </Button>
+            <Button
+              variant="contained"
+              component={Link}
+              to="/login"
+              endIcon={<LoginIcon />}
+            >
+              <Typography variant="h8">login</Typography>
+            </Button>
+          </ButtonGroup>
         </Paper>
-        <Paper
-          sx={{
-            height: "40vh",
-            width: "30%",
-          }}
-        ></Paper>
       </Box>
     </div>
   );
