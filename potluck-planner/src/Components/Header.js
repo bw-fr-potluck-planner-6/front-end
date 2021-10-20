@@ -20,7 +20,6 @@ const Header = () => {
 
   const handleLog = () => {
     setIsLoggedIn(!isLoggedIn);
-    push("/");
   };
 
   return (
@@ -33,55 +32,60 @@ const Header = () => {
         <Typography variant="h4" component="h1">
           Potluck Planner
         </Typography>
-        {!isLoggedIn ? (
-          <ButtonGroup>
-            <Button
-              variant="contained"
-              component={Link}
-              to="/signup"
-              endIcon={<AssignmentIcon />}
-            >
-              <Typography variant="h8">Sign Up</Typography>
-            </Button>
-            <Button
-              onClick={handleLog}
-              variant="contained"
-              component={Link}
-              to="/dashboard"
-              endIcon={<LoginIcon />}
-            >
-              <Typography variant="h8">Login</Typography>
-            </Button>
-          </ButtonGroup>
-        ) : (
-          <ButtonGroup>
-            <Button
-              variant="contained"
-              component={Link}
-              to="/dashboard"
-              endIcon={<DashboardIcon />}
-            >
-              <Typography variant="h8">Dashboard</Typography>
-            </Button>
-            <Button
-              onClick={handleLog}
-              variant="contained"
-              component={Link}
-              to="/logout"
-              endIcon={<LogoutIcon />}
-            >
-              <Typography variant="h8">Logout</Typography>
-            </Button>
-          </ButtonGroup>
-        )}
-        <Button
-          variant="contained"
-          component={Link}
-          to="/"
-          endIcon={<HomeIcon />}
-        >
-          Home
-        </Button>
+        <div>
+          {!isLoggedIn ? (
+            <ButtonGroup>
+              <Button
+                variant="contained"
+                component={Link}
+                to="/signup"
+                endIcon={<AssignmentIcon />}
+              >
+                <Typography variant="h8">Sign Up</Typography>
+              </Button>
+              <Button
+                onClick={handleLog}
+                variant="contained"
+                component={Link}
+                to="/dashboard"
+                endIcon={<LoginIcon />}
+              >
+                <Typography variant="h8">Login</Typography>
+              </Button>
+            </ButtonGroup>
+          ) : (
+            <ButtonGroup>
+              <Button
+                variant="contained"
+                component={Link}
+                to="/dashboard"
+                endIcon={<DashboardIcon />}
+              >
+                <Typography variant="h8">Dashboard</Typography>
+              </Button>
+              <Button
+                onClick={handleLog}
+                variant="contained"
+                component={Link}
+                to="/logout"
+                endIcon={<LogoutIcon />}
+              >
+                <Typography variant="h8">Logout</Typography>
+              </Button>
+            </ButtonGroup>
+          )}
+          <Button
+            variant="contained"
+            component={Link}
+            to="/"
+            endIcon={<HomeIcon />}
+            sx={{
+              marginLeft: "30px",
+            }}
+          >
+            Home
+          </Button>
+        </div>
       </Toolbar>
     </AppBar>
   );
