@@ -35,7 +35,7 @@ const Signup = () => {
       <Paper
         elevation={10}
         sx={{
-          height: "50vh",
+          height: "55vh",
           width: "50%",
         }}
       >
@@ -53,6 +53,7 @@ const Signup = () => {
             display: "flex",
             flexFlow: "column",
             alignItems: "center",
+            gap: "20px",
             paddingTop: "30px",
           }}
           onSubmit={handleUserSubmit}
@@ -79,9 +80,6 @@ const Signup = () => {
               variant="outlined"
               id="outlined-required"
               required
-              sx={{
-                marginTop: "10px",
-              }}
             />
           </label>
           <label>
@@ -94,9 +92,6 @@ const Signup = () => {
               variant="outlined"
               id="outlined-required"
               required
-              sx={{
-                marginTop: "10px",
-              }}
             />
           </label>
           <label>
@@ -109,15 +104,12 @@ const Signup = () => {
               variant="outlined"
               id="outlined-required"
               required
-              sx={{
-                marginTop: "10px",
-              }}
             />
           </label>
           <Button
             sx={{
               width: "100px",
-              margin: "25px 0",
+              marginTop: "10px",
             }}
             variant="contained"
           >
