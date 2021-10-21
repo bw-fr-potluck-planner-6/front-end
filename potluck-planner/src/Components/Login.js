@@ -8,7 +8,7 @@ import { UserContext } from "../contexts/UserContext";
 const Login = () => {
   const formValues = useForm({});
   const { push } = useHistory();
-  const { handleLog } = useContext(LoggedInContext);
+  const handleLog = useContext(LoggedInContext);
   const { user, setUser } = useContext(UserContext);
 
   const handleUserLogin = (e) => {

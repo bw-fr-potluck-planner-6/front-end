@@ -3,11 +3,10 @@ import { Button, Box, Typography, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import Event from "./Event";
-import { UserContext } from "../contexts/UserContext";
+import { useHistory } from "react-router";
 const Dashboard = () => {
   const [events, setEvents] = useState([{}]);
-  const user = useContext(UserContext);
-
+  const { push } = useHistory();
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/potlucks`)
@@ -19,8 +18,8 @@ const Dashboard = () => {
         console.error(err);
       });
   }, []);
+
   console.log(`events are here: ${events}`);
-  console.log(`this is the user: ${user}`);
   return (
     <Box
       sx={{
@@ -42,7 +41,12 @@ const Dashboard = () => {
       <Grid container spacing={1} justifyContent={"space-evenly"}>
         {events.map((event) => (
           <Grid item lg={2.5} md={4} xs={10} margin={2}>
-            <Event key={event.potluck_id} event={event} />
+            <Event
+              key={event.potluck_id}
+              event={event}
+              events={events}
+              setEvents={setEvents}
+            />
           </Grid>
         ))}
       </Grid>
