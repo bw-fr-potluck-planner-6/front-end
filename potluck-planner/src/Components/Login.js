@@ -1,26 +1,46 @@
 import React from "react";
 import useForm from "../hooks/useForm";
 import { Button, Paper, Box, Typography, TextField } from "@mui/material";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { useHistory } from "react-router";
 
 const Login = () => {
   const formValues = useForm({});
+  const { push } = useHistory();
+
+  const handleUserLogin = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post(
+        "https://potluckaapi.herokuapp.com/api/users/login",
+        formValues.values
+      )
+      .then((res) => {
+        console.log("submitted, returned: ", res);
+
+        push("/dashboard");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <Box
-    sx={{
+      sx={{
         display: "flex",
         alignItems: "center",
         flexFlow: "column wrap",
         marginTop: "100px",
-    }}
-    > 
-      <Paper
-      elavation={10}
-      sx={{
-        width: "50%",
-        height:"40vh",
-        minHeight: "400px",
       }}
+    >
+      <Paper
+        elevation={10}
+        sx={{
+          width: "50%",
+          height: "40vh",
+          minHeight: "400px",
+        }}
       >
         <Typography
           component="h1"
@@ -29,7 +49,7 @@ const Login = () => {
             marginTop: "30px",
           }}
         >
-        Login
+          Login
         </Typography>
         <form
           style={{
@@ -37,10 +57,10 @@ const Login = () => {
             flexFlow: "column",
             alignItems: "center",
             gap: "20px",
-            marginTop:"30px",
+            marginTop: "30px",
           }}
-        > 
-          <label>        
+        >
+          <label>
             <TextField
               onChange={formValues.handleChange}
               value={formValues.values.email}
@@ -63,12 +83,16 @@ const Login = () => {
               required
             />
           </label>
-          <Button 
+          <Button
+            onClick={handleUserLogin}
             sx={{
-              width:"100px",
-              marginTop: "10px"
+              width: "100px",
+              marginTop: "10px",
             }}
-          variant="contained">Login</Button>
+            variant="contained"
+          >
+            Login
+          </Button>
         </form>
       </Paper>
     </Box>

@@ -12,11 +12,14 @@ const Signup = () => {
     e.preventDefault();
     axiosWithAuth()
       //need to add proper url
-      .post("/users/", formValues.values)
+      .post(
+        "https://potluckaapi.herokuapp.com/api/users/register",
+        formValues.values
+      )
       .then((res) => {
-        // console.log("submitted, returned: ", res);
+        console.log("submitted, returned: ", res);
 
-        push("/dashboard");
+        push("/login");
       })
       .catch((err) => {
         console.error(err);
@@ -62,22 +65,10 @@ const Signup = () => {
           <label>
             <TextField
               onChange={formValues.handleChange}
-              value={formValues.values.firstName}
-              name="firstName"
+              value={formValues.values.username}
+              name="username"
               type="text"
-              label="First Name"
-              variant="outlined"
-              id="outlined-required"
-              required
-            />
-          </label>
-          <label>
-            <TextField
-              onChange={formValues.handleChange}
-              value={formValues.values.lastName}
-              name="lastName"
-              type="text"
-              label="Last Name"
+              label="Username"
               variant="outlined"
               id="outlined-required"
               required
@@ -108,6 +99,7 @@ const Signup = () => {
             />
           </label>
           <Button
+            onClick={handleUserSubmit}
             sx={{
               width: "100px",
               marginTop: "10px",
