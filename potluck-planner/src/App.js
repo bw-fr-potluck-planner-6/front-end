@@ -10,40 +10,32 @@ import Login from "./Components/Login";
 import Logout from "./Components/Logout";
 import CreateEvent from "./Components/CreateEvent";
 import EditEvent from "./Components/EditEvent";
-import { EventContext } from "./contexts/EventContext";
 import { UserContext } from "./contexts/UserContext";
-// import axiosWithAuth from "./utils/axiosWithAuth";
+import { LoggedInContext } from "./contexts/LoggedInContext";
 
 function App() {
-  const [events, setEvents] = useState([{}]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState();
-
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get(`/user/`)
-  //     .then((res) => {
-  //       setUser(res);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, []);
 
   return (
     <div className="App">
       <UserContext.Provider value={(user, setUser)}>
-        <Header />
+        <LoggedInContext.Provider value={isLoggedIn}>
+          <Header />
+        </LoggedInContext.Provider>
         <Switch>
           <PrivateRoute path="/logout">
-            <Logout />
+            <LoggedInContext.Provider value={setIsLoggedIn}>
+              <Logout />
+            </LoggedInContext.Provider>
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
-            <EventContext.Provider value={(events, setEvents)}>
-              <Dashboard />
-            </EventContext.Provider>
+            <Dashboard />
           </PrivateRoute>
           <Route path="/login">
-            <Login />
+            <LoggedInContext.Provider value={setIsLoggedIn}>
+              <Login />
+            </LoggedInContext.Provider>
           </Route>
           <Route path="/signup">
             <Signup />
