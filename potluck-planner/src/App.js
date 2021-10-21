@@ -17,38 +17,42 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState();
 
+  const handleLog = () => {
+    setIsLoggedIn(!isLoggedIn);
+  };
+
   return (
     <div className="App">
       <UserContext.Provider value={(user, setUser)}>
-        <LoggedInContext.Provider value={isLoggedIn}>
+        <LoggedInContext.Provider value={(isLoggedIn, handleLog)}>
           <Header />
         </LoggedInContext.Provider>
         <Switch>
-          <PrivateRoute path="/logout">
-            <LoggedInContext.Provider value={setIsLoggedIn}>
+          <LoggedInContext.Provider value={(isLoggedIn, setIsLoggedIn)}>
+            <PrivateRoute path="/logout">
               <Logout />
-            </LoggedInContext.Provider>
-          </PrivateRoute>
+            </PrivateRoute>
+          </LoggedInContext.Provider>
           <PrivateRoute path="/dashboard">
             <Dashboard />
           </PrivateRoute>
-          <Route path="/login">
-            <LoggedInContext.Provider value={setIsLoggedIn}>
+          <LoggedInContext.Provider value={(isLoggedIn, setIsLoggedIn)}>
+            <Route path="/login">
               <Login />
-            </LoggedInContext.Provider>
-          </Route>
+            </Route>
+          </LoggedInContext.Provider>
           <Route path="/signup">
             <Signup />
           </Route>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/create">
+          <PrivateRoute path="/create">
             <CreateEvent />
-          </Route>
-          <Route path="/edit">
+          </PrivateRoute>
+          <PrivateRoute path="/edit">
             <EditEvent />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </UserContext.Provider>
     </div>

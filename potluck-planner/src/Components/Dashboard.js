@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Button, Box, Typography } from "@mui/material";
+import React, { useEffect, useState, useContext } from "react";
+import { Button, Box, Typography, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import Event from "./Event";
+import { UserContext } from "../contexts/UserContext";
 const Dashboard = () => {
   const [events, setEvents] = useState([{}]);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     axiosWithAuth()
@@ -17,6 +20,7 @@ const Dashboard = () => {
       });
   }, []);
   console.log(`events are here: ${events}`);
+  console.log(`this is the user: ${user}`);
   return (
     <Box
       sx={{
@@ -26,24 +30,22 @@ const Dashboard = () => {
         justifyContent: "space-between",
       }}
     >
+      {/* need to capitalize the username with JS!! */}
       <div>
-        <Typography variant="h1" color="white">
-          Dashboard
+        <Typography variant="h2" color="white">
+          {localStorage.getItem("username")}!
         </Typography>
       </div>
       <Button variant="contained" component={Link} to="/create">
         Add New Event
       </Button>
-      <div>
+      <Grid container spacing={1} justifyContent={"space-evenly"}>
         {events.map((event) => (
-          <div key={event.potluck_id}>
-            <h3>{event.potluck_name}</h3>
-            <h3>{event.potluck_date}</h3>
-            <h3>{event.location}</h3>
-            <h3>{event.time}</h3>
-          </div>
+          <Grid item lg={2.5} md={4} xs={10} margin={2}>
+            <Event key={event.potluck_id} event={event} />
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </Box>
   );
 };

@@ -9,7 +9,6 @@ const Logout = () => {
   useEffect(() => {
     localStorage.removeItem("token");
     push("/login");
-    setIsLoggedIn(false);
   });
 
   return <div></div>;
