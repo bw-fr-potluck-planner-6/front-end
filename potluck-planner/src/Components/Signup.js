@@ -11,11 +11,7 @@ const Signup = () => {
   const handleUserSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      //need to add proper url
-      .post(
-        "https://potluckaapi.herokuapp.com/api/users/register",
-        formValues.values
-      )
+      .post("/api/users/register", formValues.values)
       .then((res) => {
         console.log("submitted, returned: ", res);
 

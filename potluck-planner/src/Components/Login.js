@@ -1,24 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import useForm from "../hooks/useForm";
 import { Button, Paper, Box, Typography, TextField } from "@mui/material";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router";
+import { LoggedInContext } from "../contexts/LoggedInContext";
 
 const Login = () => {
   const formValues = useForm({});
   const { push } = useHistory();
+  const { setIsLoggedIn } = useContext(LoggedInContext);
 
   const handleUserLogin = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post(
-        "https://potluckaapi.herokuapp.com/api/users/login",
-        formValues.values
-      )
+      .post("/api/users/login", formValues.values)
       .then((res) => {
         console.log("submitted, returned: ", res);
-
+        localStorage.setItem("token", res.data.token);
         push("/dashboard");
+        setIsLoggedIn(true);
       })
       .catch((err) => {
         console.error(err);

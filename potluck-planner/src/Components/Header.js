@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 // import { useHistory } from "react-router";
 import {
   Toolbar,
@@ -13,15 +13,11 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Link } from "react-router-dom";
+import { LoggedInContext } from "../contexts/LoggedInContext";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const { push } = useHistory();
-
-  const handleLog = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
-
+  const isLoggedIn = useContext(LoggedInContext);
   return (
     <AppBar position="static">
       <Toolbar
@@ -44,7 +40,6 @@ const Header = () => {
                 <Typography variant="h8">Sign Up</Typography>
               </Button>
               <Button
-                onClick={handleLog}
                 variant="contained"
                 component={Link}
                 to="/login"
@@ -64,7 +59,6 @@ const Header = () => {
                 <Typography variant="h8">Dashboard</Typography>
               </Button>
               <Button
-                onClick={handleLog}
                 variant="contained"
                 component={Link}
                 to="/logout"
