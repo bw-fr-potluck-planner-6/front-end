@@ -63,10 +63,10 @@ const Login = () => {
           <label>
             <TextField
               onChange={formValues.handleChange}
-              value={formValues.values.email}
-              name="email"
-              type="email"
-              label="Email"
+              value={formValues.values.username}
+              name="username"
+              type="username"
+              label="Username"
               id="outlined-required"
               required
             />

@@ -7,7 +7,7 @@ const axiosWithAuth = () => {
     headers: {
       authorization: token,
     },
-    // baseURL: "insert api url here"
+    baseURL: "https://potluckaapi.herokuapp.com",
   });
 };
 
