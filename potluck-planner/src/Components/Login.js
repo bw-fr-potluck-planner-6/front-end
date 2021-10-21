@@ -8,7 +8,7 @@ import { LoggedInContext } from "../contexts/LoggedInContext";
 const Login = () => {
   const formValues = useForm({});
   const { push } = useHistory();
-  const { setIsLoggedIn } = useContext(LoggedInContext);
+  const setIsLoggedIn = useContext(LoggedInContext);
 
   const handleUserLogin = (e) => {
     e.preventDefault();
