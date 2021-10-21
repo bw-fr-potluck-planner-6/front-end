@@ -13,24 +13,15 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 
 const Home = () => {
   return (
-    <Box
-      sx={
-        {
-          // display: "flex",
-          // justifyContent: "space-evenly",
-          // alignItems: "flex-start",
-          // marginTop: "200px",
-        }
-      }
-    >
-      <Grid container spacing={2}>
-        <Grid item lg={6}>
-          <div
-          // style={{
-          //   width: "50%",
-          //   height: "40vh",
-          // }}
-          >
+    <Box>
+      <Grid
+        container
+        spacing={0}
+        marginTop={"10%"}
+        justifyContent={"space-evenly"}
+      >
+        <Grid item lg={4} md={4} xs={12} marginLeft={4}>
+          <div>
             <Typography component="h1" variant="h3" color="white" mb={3}>
               Potluck Planner
             </Typography>
@@ -49,7 +40,7 @@ const Home = () => {
             </Typography>
           </div>
         </Grid>
-        <Grid item lg={6}>
+        <Grid item lg={3} md={4} xs={9}>
           <Paper
             sx={{
               display: "flex",
@@ -57,7 +48,6 @@ const Home = () => {
               alignItems: "center",
               justifyContent: "space-evenly",
               height: "30vh",
-              width: "30%",
               padding: "0 20px",
               opacity: "0.8",
             }}
