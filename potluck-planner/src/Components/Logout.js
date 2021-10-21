@@ -4,7 +4,7 @@ import { LoggedInContext } from "../contexts/LoggedInContext";
 
 const Logout = () => {
   const { push } = useHistory();
-  const { setIsLoggedIn } = useContext(LoggedInContext);
+  const setIsLoggedIn = useContext(LoggedInContext);
 
   useEffect(() => {
     localStorage.removeItem("token");
