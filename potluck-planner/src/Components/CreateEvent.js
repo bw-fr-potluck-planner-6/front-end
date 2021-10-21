@@ -16,10 +16,9 @@ export default function CreateEvent() {
   const handleEventSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      //need to add proper url
-      .post("/events/", formValues)
+      .post("/api/potlucks/", formValues)
       .then((res) => {
-        // console.log("submitted, returned: ", res);
+        console.log("submitted, returned: ", res);
 
         push("/dashboard");
       })
@@ -62,7 +61,6 @@ export default function CreateEvent() {
             gap: "20px",
             paddingTop: "30px",
           }}
-          onSubmit={handleEventSubmit}
         >
           <label>
             <TextField
@@ -98,6 +96,7 @@ export default function CreateEvent() {
           </label>
 
           <Button
+            onClick={handleEventSubmit}
             sx={{
               width: "100px",
               marginTop: "10px",

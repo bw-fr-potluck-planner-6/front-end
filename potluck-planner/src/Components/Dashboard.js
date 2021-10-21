@@ -41,7 +41,12 @@ const Dashboard = () => {
       <Grid container spacing={1} justifyContent={"space-evenly"}>
         {events.map((event) => (
           <Grid item lg={2.5} md={4} xs={10} margin={2}>
-            <Event key={event.potluck_id} event={event} />
+            <Event
+              key={event.potluck_id}
+              event={event}
+              events={events}
+              setEvents={setEvents}
+            />
           </Grid>
         ))}
       </Grid>

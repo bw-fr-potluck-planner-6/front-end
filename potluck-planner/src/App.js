@@ -12,6 +12,7 @@ import CreateEvent from "./Components/CreateEvent";
 import EditEvent from "./Components/EditEvent";
 import { UserContext } from "./contexts/UserContext";
 import { LoggedInContext } from "./contexts/LoggedInContext";
+import { EventContext } from "./contexts/EventContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
