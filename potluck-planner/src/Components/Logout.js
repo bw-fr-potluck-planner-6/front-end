@@ -6,7 +6,7 @@ const Logout = () => {
 
   useEffect(() => {
     push("/login");
-  }, []);
+  });
 
   return <div></div>;
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import {
   Toolbar,
   Typography,
@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { push } = useHistory();
+  // const { push } = useHistory();
 
   const handleLog = () => {
     setIsLoggedIn(!isLoggedIn);

@@ -1,6 +1,6 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PrivateRoute from "./Components/PrivateRoute";
 import Home from "./Components/Home";
 import Dashboard from "./Components/Dashboard";
@@ -12,28 +12,22 @@ import CreateEvent from "./Components/CreateEvent";
 import EditEvent from "./Components/EditEvent";
 import { EventContext } from "./contexts/EventContext";
 import { UserContext } from "./contexts/UserContext";
-import axiosWithAuth from "./utils/axiosWithAuth";
-
-const initialUser = {
-  firstName: "John",
-  lastName: "Doe",
-  email: "johndoe@email.com",
-};
+// import axiosWithAuth from "./utils/axiosWithAuth";
 
 function App() {
   const [events, setEvents] = useState([{}]);
-  const [user, setUser] = useState(initialUser);
+  const [user, setUser] = useState();
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/user/`)
-      .then((res) => {
-        setUser(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get(`/user/`)
+  //     .then((res) => {
+  //       setUser(res);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }, []);
 
   return (
     <div className="App">
