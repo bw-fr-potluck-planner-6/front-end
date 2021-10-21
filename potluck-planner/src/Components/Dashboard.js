@@ -4,23 +4,22 @@ import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import Event from "./Event";
 import { UserContext } from "../contexts/UserContext";
+
 const Dashboard = () => {
   const [events, setEvents] = useState([{}]);
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/potlucks`)
       .then((res) => {
-        console.log(res.data);
         setEvents(res.data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
-  console.log(`events are here: ${events}`);
-  console.log(`this is the user: ${user}`);
+
   return (
     <Box
       sx={{
@@ -33,7 +32,7 @@ const Dashboard = () => {
       {/* need to capitalize the username with JS!! */}
       <div>
         <Typography variant="h2" color="white">
-          {localStorage.getItem("username")}!
+          {user}
         </Typography>
       </div>
       <Button variant="contained" component={Link} to="/create">

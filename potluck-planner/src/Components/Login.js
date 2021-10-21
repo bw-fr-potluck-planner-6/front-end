@@ -8,20 +8,19 @@ import { UserContext } from "../contexts/UserContext";
 const Login = () => {
   const formValues = useForm({});
   const { push } = useHistory();
-  const { handleLog } = useContext(LoggedInContext);
-  const { user, setUser } = useContext(UserContext);
+
+  const { setIsLoggedIn } = useContext(LoggedInContext);
+  const { setUser } = useContext(UserContext);
 
   const handleUserLogin = (e) => {
     e.preventDefault();
     axiosWithAuth()
       .post("/api/users/login", formValues.values)
       .then((res) => {
-        console.log("submitted, returned: ", res);
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("username", res.data.message);
-        handleLog();
-        // setUser(res.data.message);
+        setUser(res.data.message);
         push("/dashboard");
+        setIsLoggedIn(true);
       })
       .catch((err) => console.log(err));
   };
