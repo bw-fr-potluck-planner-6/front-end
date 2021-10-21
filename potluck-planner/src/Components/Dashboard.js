@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { EventContext } from "../contexts/EventContext";
 import { Button, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import axiosWithAuth from "../utils/axiosWithAuth";
 const Dashboard = () => {
   const user = useContext(UserContext);
   const event = useContext(EventContext);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("http://localhost:5000/api/potlucks")
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <Box
       sx={{
