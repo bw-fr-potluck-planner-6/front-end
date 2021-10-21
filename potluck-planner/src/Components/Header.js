@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-// import { useHistory } from "react-router";
+import React, { useContext, useEffect } from "react";
 import {
   Toolbar,
   Typography,
@@ -16,8 +15,8 @@ import { Link } from "react-router-dom";
 import { LoggedInContext } from "../contexts/LoggedInContext";
 
 const Header = () => {
-  // const { push } = useHistory();
   const { isLoggedIn, setIsLoggedIn } = useContext(LoggedInContext);
+
   return (
     <AppBar position="static">
       <Toolbar
@@ -59,7 +58,7 @@ const Header = () => {
                 <Typography variant="h8">Dashboard</Typography>
               </Button>
               <Button
-                // onClick={setIsLoggedIn(false)}
+                onClick={() => setIsLoggedIn(false)}
                 variant="contained"
                 component={Link}
                 to="/logout"

@@ -16,26 +16,22 @@ import { EventContext } from "./contexts/EventContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState();
-  const handleLog = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
+  const [user, setUser] = useState("");
 
   return (
     <div className="App">
-      <UserContext.Provider value={(user, setUser)}>
-        <LoggedInContext.Provider value={(isLoggedIn, handleLog)}>
-          <Header />
-
+      <LoggedInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <Header />
+      </LoggedInContext.Provider>
+      <UserContext.Provider value={{ user, setUser }}>
+        <LoggedInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
           <Switch>
             <PrivateRoute path="/logout">
               <Logout />
             </PrivateRoute>
-
             <PrivateRoute path="/dashboard">
               <Dashboard />
             </PrivateRoute>
-
             <Route path="/login">
               <Login />
             </Route>
