@@ -17,7 +17,7 @@ import { LoggedInContext } from "../contexts/LoggedInContext";
 
 const Header = () => {
   // const { push } = useHistory();
-  const isLoggedIn = useContext(LoggedInContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoggedInContext);
   return (
     <AppBar position="static">
       <Toolbar
@@ -59,6 +59,7 @@ const Header = () => {
                 <Typography variant="h8">Dashboard</Typography>
               </Button>
               <Button
+                // onClick={setIsLoggedIn(false)}
                 variant="contained"
                 component={Link}
                 to="/logout"
