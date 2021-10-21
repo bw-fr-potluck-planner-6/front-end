@@ -16,6 +16,7 @@ const Dashboard = () => {
         console.error(err);
       });
   }, []);
+  console.log(`events are here: ${events}`);
   return (
     <Box
       sx={{
@@ -33,15 +34,16 @@ const Dashboard = () => {
       <Button variant="contained" component={Link} to="/create">
         Add New Event
       </Button>
-      {/* <div>
-        {events.map((event) => {
+      <div>
+        {events.map((event) => (
           <div key={event.potluck_id}>
             <h3>{event.potluck_name}</h3>
+            <h3>{event.potluck_date}</h3>
             <h3>{event.location}</h3>
             <h3>{event.time}</h3>
-          </div>;
-        })}
-      </div> */}
+          </div>
+        ))}
+      </div>
     </Box>
   );
 };
