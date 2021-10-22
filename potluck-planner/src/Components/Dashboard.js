@@ -13,7 +13,7 @@ const Dashboard = () => {
       .get(`/api/potlucks`)
       .then((res) => {
         setEvents(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
