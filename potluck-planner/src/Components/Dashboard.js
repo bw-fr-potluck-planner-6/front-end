@@ -8,12 +8,13 @@ import EventIcon from "@mui/icons-material/Event";
 const Dashboard = () => {
   const [events, setEvents] = useState([{}]);
 
+  const welcome = localStorage.getItem("user");
+
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/potlucks`)
       .then((res) => {
         setEvents(res.data);
-        // console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -26,13 +27,13 @@ const Dashboard = () => {
         display: "flex",
         flexFlow: "column wrap",
         alignItems: "center",
-        justifyContent: "space-between",
+        // justifyContent: "space-around",
       }}
     >
       {/* need to capitalize the username with JS!! */}
       <div>
-        <Typography variant="h2" color="white">
-          {localStorage.getItem("user")}
+        <Typography variant="h2" color="white" pt={5}>
+          {welcome.toUpperCase()}
         </Typography>
       </div>
       <Button
@@ -41,7 +42,7 @@ const Dashboard = () => {
         to="/create"
         endIcon={<EventIcon />}
         sx={{
-          margin: "5% 0",
+          margin: "2.5% 0",
         }}
       >
         New Event

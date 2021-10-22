@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import useForm from "../hooks/useForm";
-import { Button, Paper, Box, Typography, TextField } from "@mui/material";
+import { Button, Paper, Box, Typography, TextField, Grid } from "@mui/material";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router";
 import { UserContext } from "../contexts/UserContext";
@@ -15,81 +15,75 @@ const Login = () => {
       .post("/api/users/login", formValues.values)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", res.data.message);
         setUser(res.data.message);
-        //Keep both; will explain
         push("/dashboard");
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexFlow: "column wrap",
-        marginTop: "100px",
-      }}
-    >
-      <Paper
-        elevation={10}
-        sx={{
-          width: "30%",
-          height: "40vh",
-          minHeight: "400px",
-        }}
-      >
-        <Typography
-          component="h1"
-          variant="h3"
-          sx={{
-            marginTop: "30px",
-          }}
-        >
-          Login
-        </Typography>
-        <form
-          style={{
-            display: "flex",
-            flexFlow: "column",
-            alignItems: "center",
-            gap: "20px",
-            marginTop: "30px",
-          }}
-        >
-          <label>
-            <TextField
-              onChange={formValues.handleChange}
-              value={formValues.values.username}
-              name="username"
-              type="username"
-              label="Username"
-              required
-            />
-          </label>
-
-          <label>
-            <TextField
-              onChange={formValues.handleChange}
-              value={formValues.values.password}
-              name="password"
-              type="password"
-              label="Password"
-              required
-            />
-          </label>
-          <Button
-            onClick={handleUserLogin}
+    <Box>
+      <Grid container justifyContent={"center"} mt={17.5}>
+        <Grid item lg={3} md={5} sm={7} xs={9}>
+          <Paper
+            elevation={20}
             sx={{
-              width: "100px",
-              marginTop: "10px",
+              height: "40vh",
+              minHeight: "400px",
+              paddingTop: "2.5%",
             }}
-            variant="contained"
           >
-            Login
-          </Button>
-        </form>
-      </Paper>
+            <Typography
+              component="h1"
+              variant="h3"
+              sx={{
+                marginTop: "30px",
+              }}
+            >
+              Login
+            </Typography>
+            <form
+              style={{
+                display: "flex",
+                flexFlow: "column",
+                alignItems: "center",
+                gap: "20px",
+                marginTop: "30px",
+              }}
+            >
+              <TextField
+                onChange={formValues.handleChange}
+                value={formValues.values.username}
+                name="username"
+                type="username"
+                label="Username"
+                required
+              />
+
+              <TextField
+                onChange={formValues.handleChange}
+                value={formValues.values.password}
+                name="password"
+                type="password"
+                label="Password"
+                required
+              />
+
+              <Button
+                onClick={handleUserLogin}
+                sx={{
+                  width: "100px",
+                  marginTop: "10px",
+                }}
+                variant="contained"
+              >
+                Login
+              </Button>
+            </form>
+          </Paper>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
