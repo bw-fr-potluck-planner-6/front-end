@@ -49,7 +49,7 @@ const Event = (props) => {
         setEvent(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   const handleDelete = () => {
     axiosWithAuth()
@@ -62,6 +62,7 @@ const Event = (props) => {
       })
       .catch((err) => console.log(err));
   };
+  console.log(event.foods);
   return (
     <Paper
       sx={{
@@ -126,8 +127,15 @@ const Event = (props) => {
           </span>
           {event.time}
         </Typography>
-        <Typography variant="h5" color="initial">
-          {event.foods.map((food) => `Foods: ${food.food_name}`)}
+        <Typography variant="h5">
+          <span
+            style={{ color: "red", fontWeight: "bold", fontSize: "1.2rem" }}
+          >
+            Food:
+          </span>
+        </Typography>
+        <Typography variant="h6">
+          {event.foods.map((food) => food.food_name)}
         </Typography>
         <Typography variant="h5" color="initial">
           {event.guests.map((guest) => `Guests: ${guest.username}`)}
