@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Box, Typography, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import Event from "./Event";
+import EventListItem from "./EventListItem";
 import EventIcon from "@mui/icons-material/Event";
 
 const Dashboard = () => {
@@ -13,6 +13,7 @@ const Dashboard = () => {
       .get(`/api/potlucks`)
       .then((res) => {
         setEvents(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -45,7 +46,7 @@ const Dashboard = () => {
       <Grid container spacing={1} justifyContent={"space-evenly"}>
         {events.map((event) => (
           <Grid item lg={2.5} md={4} xs={10} margin={2}>
-            <Event
+            <EventListItem
               key={event.potluck_id}
               event={event}
               events={events}

@@ -1,31 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Paper, Typography, Button } from "@mui/material";
 import { useHistory } from "react-router";
-import { Link, useParams } from "react-router-dom";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import { Link } from "react-router-dom";
 
-const Event = (props) => {
-  //   const { potluck_id, potluck_name, date, location, time } = props.event;
-  const { push } = useHistory();
-  const { id } = useParams();
+const EventListItem = (props) => {
+  const { potluck_id, potluck_name, date, location, time } = props.event;
   //I AM NOT RERENDERING AFTER DELETE, NEED TO FIX
-
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/potlucks/${id}`)
-      .then((res) => console.log(res));
-  }, []);
-  const handleDelete = (id) => {
-    axiosWithAuth()
-      .delete(`/api/potlucks/${id}`)
-      .then((res) => {
-        props.setEvents(
-          props.events.filter((event) => event.potluck_id !== +id)
-        );
-        push("/dashboard");
-      })
-      .catch((err) => console.log(err));
-  };
 
   return (
     <Paper
@@ -50,19 +30,19 @@ const Event = (props) => {
         variant="h3"
         color="primary"
       >
-        test1 {/* {potluck_name} */}
+        {potluck_name}
       </Typography>
       <Typography variant="h5" color="initial">
         <span style={{ color: "red", fontWeight: "bold", fontSize: "1.2rem" }}>
           Date:{" "}
         </span>{" "}
-        test2 {/* {date} */}
+        {date}
       </Typography>
       <Typography variant="h5" color="initial">
         <span style={{ color: "red", fontWeight: "bold", fontSize: "1.2rem" }}>
           Location:{"  "}
         </span>
-        test3 {/* {location} */}
+        {location}
       </Typography>
       <Typography variant="h5" color="initial">
         <span
@@ -74,34 +54,22 @@ const Event = (props) => {
         >
           Time:{" "}
         </span>
-        {/* {time} */}
+        {time}
       </Typography>
       <Button
         variant="contained"
         color="primary"
         component={Link}
-        to="/edit"
+        to={`/dashboard/${potluck_id}`}
         sx={{
           alignSelf: "center",
           width: "100px",
         }}
       >
-        Edit
-      </Button>
-      <Button
-        variant="contained"
-        color="error"
-        component={Link}
-        to="/edit"
-        sx={{
-          alignSelf: "center",
-          width: "100px",
-        }}
-      >
-        Delete
+        View
       </Button>
     </Paper>
   );
 };
 
-export default Event;
+export default EventListItem;

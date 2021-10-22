@@ -12,7 +12,7 @@ import Logout from "./Components/Logout";
 import CreateEvent from "./Components/CreateEvent";
 import EditEvent from "./Components/EditEvent";
 import { UserContext } from "./contexts/UserContext";
-
+import Event from "./Components/Event";
 // import { EventContext } from "./contexts/EventContext";
 
 function App() {
@@ -27,9 +27,10 @@ function App() {
           <PublicRoute restricted={false} path="/signup" component={Signup} />
           <PublicRoute restricted={false} exact path="/" component={Home} />
           <PrivateRoute path="/logout" component={Logout} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/create" component={CreateEvent} />
           <PrivateRoute path="/edit" component={EditEvent} />
+          <PrivateRoute exact path="/dashboard/:id" component={Event} />
         </Switch>
       </UserContext.Provider>
     </div>
