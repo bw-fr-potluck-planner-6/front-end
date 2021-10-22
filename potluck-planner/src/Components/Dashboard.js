@@ -40,6 +40,9 @@ const Dashboard = () => {
         component={Link}
         to="/create"
         endIcon={<EventIcon />}
+        sx={{
+          margin: "5% 0",
+        }}
       >
         New Event
       </Button>

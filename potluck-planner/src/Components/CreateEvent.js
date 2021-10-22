@@ -61,6 +61,7 @@ export default function CreateEvent() {
                 name="potluck_name"
                 label="Name"
                 variant="outlined"
+                // helperText="Name"
               />
               <TextField
                 onChange={formValues.handleChange}
@@ -69,11 +70,12 @@ export default function CreateEvent() {
                 name="location"
                 label="Location"
                 variant="outlined"
+                // helperText="Location"
               />
               <TextField
                 name="date"
                 type="date"
-                label="Date"
+                helperText="Date:"
                 onChange={formValues.handleChange}
                 value={formValues.values.date}
                 sx={{
@@ -83,7 +85,7 @@ export default function CreateEvent() {
               <TextField
                 name="time"
                 type="time"
-                label="Time"
+                helperText="Time:"
                 onChange={formValues.handleChange}
                 value={formValues.values.time}
                 sx={{

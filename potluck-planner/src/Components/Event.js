@@ -34,6 +34,9 @@ const initialEvent = {
     },
   ],
 };
+
+//ADD A LOADER SPINNER OR SOMETHING WHILE DATA IS BEING FETCHED
+
 const Event = (props) => {
   const [event, setEvent] = useState(initialEvent);
   const { push } = useHistory();
