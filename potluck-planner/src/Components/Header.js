@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Toolbar,
   Typography,
@@ -21,9 +21,11 @@ const Header = () => {
           justifyContent: "space-between",
         }}
       >
-        <Typography variant="h4" component="h1">
-          Potluck Planner
-        </Typography>
+        <div>
+          <Typography variant="h4" component="h1">
+            Potluck Planner
+          </Typography>
+        </div>
         <div>
           {localStorage.getItem("token") ? (
             <ButtonGroup>

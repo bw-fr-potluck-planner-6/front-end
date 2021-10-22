@@ -1,25 +1,33 @@
-import * as React from "react";
+import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router";
 import useForm from "../hooks/useForm";
-import { Button, Paper, Box, Typography, TextField } from "@mui/material";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateTimePicker from "@mui/lab/DateTimePicker";
+import { Button, Paper, Box, Typography, TextField, Grid } from "@mui/material";
+// import TimePicker from "@mui/lab/TimePicker";
+// import DatePicker from "@mui/lab/DatePicker";
+// import AdapterDateFns from "@mui/lab/AdapterDateFns";
+// import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 export default function CreateEvent() {
   //ask about why empty object is needed
+
   const formValues = useForm({});
   const { push } = useHistory();
-  const [value, setValue] = React.useState(new Date());
+  // const [value, setValue] = useState(new Date());
+
+  // const handleDTChange = (e) => {
+  //   let newValues = value;
+  //   newValues = e;
+  //   setValue(newValues);
+  //   console.log(e);
+  // };
 
   const handleEventSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/api/potlucks/", formValues)
+      .post("/api/potlucks/", formValues.values)
       .then((res) => {
         console.log("submitted, returned: ", res);
-
         push("/dashboard");
       })
       .catch((err) => {
@@ -28,85 +36,93 @@ export default function CreateEvent() {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexFlow: "column wrap",
-        marginTop: "100px",
-      }}
-    >
-      <Paper
-        elavation={10}
-        sx={{
-          height: "55vh",
-          width: "50%",
-          minHeight: "500px",
-        }}
-      >
-        <Typography
-          component="h1"
-          variant="h3"
-          sx={{
-            marginTop: "30px",
-          }}
-        >
-          Add an Event
-        </Typography>
-        <form
-          style={{
-            display: "flex",
-            flexFlow: "column wrap",
-            alignItems: "center",
-            gap: "20px",
-            paddingTop: "30px",
-          }}
-        >
-          <label>
-            <TextField
-              onChange={formValues.handleChange}
-              value={formValues.values.name}
-              type="text"
-              name="name"
-              label="Name"
-              variant="outlined"
-            />
-          </label>
-          <label>
-            <TextField
-              onChange={formValues.handleChange}
-              value={formValues.values.name}
-              type="text"
-              name="location"
-              label="Location"
-              variant="outlined"
-            />
-          </label>
-          <label>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DateTimePicker
-                renderInput={(props) => <TextField {...props} />}
-                label="Date & Time"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-              />
-            </LocalizationProvider>
-          </label>
-
-          <Button
-            onClick={handleEventSubmit}
+    <Box>
+      <Grid container justifyContent={"center"}>
+        <Grid item lg={4} md={6} sm={8} xs={10} mt={17.5}>
+          <Paper
+            elavation={20}
             sx={{
-              width: "100px",
-              marginTop: "10px",
+              height: "55vh",
+              minHeight: "500px",
+              paddingTop: "2.5%",
             }}
-            variant="contained"
           >
-            Submit
-          </Button>
-        </form>
-      </Paper>
+            <Typography
+              component="h1"
+              variant="h3"
+              sx={{
+                marginTop: "30px",
+              }}
+            >
+              Add an Event
+            </Typography>
+            <form
+              style={{
+                display: "flex",
+                flexFlow: "column wrap",
+                alignItems: "center",
+                gap: "20px",
+                paddingTop: "30px",
+              }}
+            >
+              <TextField
+                onChange={formValues.handleChange}
+                value={formValues.values.name}
+                type="text"
+                name="potluck_name"
+                label="Name"
+                variant="outlined"
+              />
+              <TextField
+                onChange={formValues.handleChange}
+                value={formValues.values.location}
+                type="text"
+                name="location"
+                label="Location"
+                variant="outlined"
+              />
+              <input
+                type="date"
+                name="date"
+                onChange={formValues.handleChange}
+                value={formValues.values.date}
+              />
+              <input
+                type="time"
+                name="time"
+                onChange={formValues.handleChange}
+                value={formValues.values.time}
+              />
+              {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  label="Date"
+                  openTo="year"
+                  views={["year", "month", "day"]}
+                  value={value}
+                  onChange={handleDTChange}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+                <TimePicker
+                  label="Time"
+                  value={value}
+                  onChange={handleDTChange}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider> */}
+              <Button
+                sx={{
+                  width: "100px",
+                  marginTop: "10px",
+                }}
+                variant="contained"
+                onClick={handleEventSubmit}
+              >
+                Submit
+              </Button>
+            </form>
+          </Paper>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

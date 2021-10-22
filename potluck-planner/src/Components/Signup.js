@@ -35,8 +35,10 @@ const Signup = () => {
         elevation={10}
         sx={{
           height: "55vh",
-          width: "50%",
+          width: "40%",
           minHeight: "400px",
+          opacity: "0.95",
+          paddingTop: "2.5%",
         }}
       >
         <Typography

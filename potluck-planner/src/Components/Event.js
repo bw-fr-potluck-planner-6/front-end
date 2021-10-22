@@ -1,24 +1,27 @@
 import React from "react";
-import { Paper, Typography, Button, ButtonGroup } from "@mui/material";
+import { Paper, Typography, Button } from "@mui/material";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import axiosWithAuth from "../utils/axiosWithAuth";
+// import axiosWithAuth from "../utils/axiosWithAuth";
 
 const Event = (props) => {
   const { potluck_id, potluck_name, date, location, time } = props.event;
   const { push } = useHistory();
   //I AM NOT RERENDERING AFTER DELETE, NEED TO FIX
-  const handleDelete = (id) => {
-    axiosWithAuth()
-      .delete(`/api/potlucks/${potluck_id}`)
-      .then((res) => {
-        props.setEvents(
-          props.events.filter((event) => event.potluck_id !== +id)
-        );
-        push("/dashboard");
-      })
-      .catch((err) => console.log(err));
-  };
+
+  // Move to view movie comp *****
+  // const handleDelete = (id) => {
+  //   axiosWithAuth()
+  //     .delete(`/api/potlucks/${potluck_id}`)
+  //     .then((res) => {
+  //       props.setEvents(
+  //         props.events.filter((event) => event.potluck_id !== +id)
+  //       );
+  //       push("/dashboard");
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
   return (
     <Paper
       sx={{
@@ -68,18 +71,18 @@ const Event = (props) => {
         </span>
         {time}
       </Typography>
-      <ButtonGroup
+      <Button
+        variant="contained"
+        color="primary"
+        component={Link}
+        to="/edit"
         sx={{
           alignSelf: "center",
+          width: "100px",
         }}
       >
-        <Button variant="contained" color="primary" component={Link} to="/edit">
-          Edit
-        </Button>
-        <Button onClick={handleDelete} variant="contained" color="error">
-          Delete
-        </Button>
-      </ButtonGroup>
+        Edit
+      </Button>
     </Paper>
   );
 };

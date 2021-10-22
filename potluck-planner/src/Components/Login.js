@@ -33,7 +33,7 @@ const Login = () => {
       <Paper
         elevation={10}
         sx={{
-          width: "50%",
+          width: "30%",
           height: "40vh",
           minHeight: "400px",
         }}
@@ -63,7 +63,6 @@ const Login = () => {
               name="username"
               type="username"
               label="Username"
-              id="outlined-required"
               required
             />
           </label>
@@ -75,7 +74,6 @@ const Login = () => {
               name="password"
               type="password"
               label="Password"
-              id="outlined-required"
               required
             />
           </label>
