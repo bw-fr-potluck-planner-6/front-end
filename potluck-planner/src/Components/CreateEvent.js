@@ -12,40 +12,40 @@ import {
   Checkbox,
 } from "@mui/material";
 import EventIcon from "@mui/icons-material/Event";
+import FastfoodIcon from "@mui/icons-material/Fastfood";
 
 //Works now
-const initialEvent = {
-  potluck_name: "",
-  date: "",
-  time: "",
-  location: "",
-  foods: [
-    {
-      food_name: "",
-    },
-    {
-      food_name: "",
-    },
-  ],
-  // guests: [
-  //   {
-  //     username: "",
-  //     food_name: "",
-  //     accepted: false,
-  //     guest_id: 1,
-  //     potluck_food_id: 1,
-  //   },
-  //   {
-  //     username: "ehsan",
-  //     food_name: "hamberger",
-  //     accepted: false,
-  //     guest_id: 2,
-  //     potluck_food_id: 2,
-  //   },
-  // ],
-};
+// const initialEvent = {
+//   potluck_name: "",
+//   date: "",
+//   time: "",
+//   location: "",
+//   foods: [
+//     {
+//       food_name: "",
+//     },
+//     {
+//       food_name: "",
+//     },
+//   ],
+// guests: [
+//   {
+//     username: "",
+//     food_name: "",
+//     accepted: false,
+//     guest_id: 1,
+//     potluck_food_id: 1,
+//   },
+//   {
+//     username: "ehsan",
+//     food_name: "hamberger",
+//     accepted: false,
+//     guest_id: 2,
+//     potluck_food_id: 2,
+//   },
+// ],
+// };
 export default function CreateEvent() {
-  //ask about why empty object is needed
   const [foodItems, setFoodItems] = useState([]);
   const [foodItem, setFoodItem] = useState("");
   const formValues = useForm({
@@ -58,7 +58,6 @@ export default function CreateEvent() {
   const { push } = useHistory();
 
   const handleFoodSubmit = (e) => {
-    // e.preventDefault();
     // const newFood = {
     //   food_name: foodItem,
     // };
@@ -68,13 +67,10 @@ export default function CreateEvent() {
     };
     formValues.setValues(newFormValues);
     setFoodItems(formValues.values.foods);
-    console.log(foodItems);
-    // formValues.setValues(initialEvent);
   };
 
   const handleFoodChange = ({ target: { value } }) => {
     setFoodItem(value);
-    console.log(value);
   };
 
   const handleEventSubmit = (e) => {
@@ -88,7 +84,7 @@ export default function CreateEvent() {
         console.error(err);
       });
   };
-
+  console.log(foodItems);
   return (
     <Box>
       <Grid container justifyContent={"space-evenly"}>
@@ -118,6 +114,7 @@ export default function CreateEvent() {
                 gap: "10px",
                 paddingTop: "30px",
               }}
+              onSubmit={handleFoodSubmit}
             >
               <TextField
                 onChange={formValues.handleChange}
@@ -174,7 +171,7 @@ export default function CreateEvent() {
                 }}
                 variant="contained"
                 onClick={handleFoodSubmit}
-                endIcon={<EventIcon />}
+                endIcon={<FastfoodIcon />}
               >
                 Add Food
               </Button>
@@ -185,6 +182,7 @@ export default function CreateEvent() {
                 }}
                 variant="contained"
                 onClick={handleEventSubmit}
+                type="submit"
                 endIcon={<EventIcon />}
               >
                 Submit
@@ -211,7 +209,7 @@ export default function CreateEvent() {
               Requested Foods:
             </Typography>
 
-            {foodItems.map((food, idx, array) => (
+            {foodItems.map((food) => (
               <Box
                 sx={{
                   display: "flex",
@@ -225,7 +223,14 @@ export default function CreateEvent() {
                     alignSelf: "center",
                   }}
                 ></Checkbox>
-                <Typography variant="h6">{array[idx]}</Typography>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    marginLeft: "5%",
+                  }}
+                >
+                  <i>{food}</i>
+                </Typography>
               </Box>
             ))}
           </Paper>
