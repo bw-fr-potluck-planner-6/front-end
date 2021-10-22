@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Box, Typography, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import Event from "./Event";
-import { UserContext } from "../contexts/UserContext";
+import EventIcon from "@mui/icons-material/Event";
 
 const Dashboard = () => {
   const [events, setEvents] = useState([{}]);
-  const { user } = useContext(UserContext);
 
   useEffect(() => {
     axiosWithAuth()
@@ -32,11 +31,16 @@ const Dashboard = () => {
       {/* need to capitalize the username with JS!! */}
       <div>
         <Typography variant="h2" color="white">
-          {user}
+          {localStorage.getItem("user")}
         </Typography>
       </div>
-      <Button variant="contained" component={Link} to="/create">
-        Add New Event
+      <Button
+        variant="contained"
+        component={Link}
+        to="/create"
+        endIcon={<EventIcon />}
+      >
+        New Event
       </Button>
       <Grid container spacing={1} justifyContent={"space-evenly"}>
         {events.map((event) => (

@@ -1,33 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router";
 import useForm from "../hooks/useForm";
 import { Button, Paper, Box, Typography, TextField, Grid } from "@mui/material";
-// import TimePicker from "@mui/lab/TimePicker";
-// import DatePicker from "@mui/lab/DatePicker";
-// import AdapterDateFns from "@mui/lab/AdapterDateFns";
-// import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import EventIcon from "@mui/icons-material/Event";
+
+//Works now
 
 export default function CreateEvent() {
   //ask about why empty object is needed
-
   const formValues = useForm({});
   const { push } = useHistory();
-  // const [value, setValue] = useState(new Date());
-
-  // const handleDTChange = (e) => {
-  //   let newValues = value;
-  //   newValues = e;
-  //   setValue(newValues);
-  //   console.log(e);
-  // };
 
   const handleEventSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
       .post("/api/potlucks/", formValues.values)
       .then((res) => {
-        console.log("submitted, returned: ", res);
         push("/dashboard");
       })
       .catch((err) => {
@@ -61,7 +50,7 @@ export default function CreateEvent() {
                 display: "flex",
                 flexFlow: "column wrap",
                 alignItems: "center",
-                gap: "20px",
+                gap: "10px",
                 paddingTop: "30px",
               }}
             >
@@ -81,34 +70,26 @@ export default function CreateEvent() {
                 label="Location"
                 variant="outlined"
               />
-              <input
-                type="date"
+              <TextField
                 name="date"
+                type="date"
+                label="Date"
                 onChange={formValues.handleChange}
                 value={formValues.values.date}
+                sx={{
+                  width: "223px",
+                }}
               />
-              <input
-                type="time"
+              <TextField
                 name="time"
+                type="time"
+                label="Time"
                 onChange={formValues.handleChange}
                 value={formValues.values.time}
+                sx={{
+                  width: "223px",
+                }}
               />
-              {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  label="Date"
-                  openTo="year"
-                  views={["year", "month", "day"]}
-                  value={value}
-                  onChange={handleDTChange}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-                <TimePicker
-                  label="Time"
-                  value={value}
-                  onChange={handleDTChange}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider> */}
               <Button
                 sx={{
                   width: "100px",
@@ -116,6 +97,7 @@ export default function CreateEvent() {
                 }}
                 variant="contained"
                 onClick={handleEventSubmit}
+                endIcon={<EventIcon />}
               >
                 Submit
               </Button>

@@ -3,15 +3,14 @@ import useForm from "../hooks/useForm";
 import { useHistory } from "react-router";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { Button, Paper, Box, Typography, TextField } from "@mui/material";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateTimePicker from "@mui/lab/DateTimePicker";
+import EventIcon from "@mui/icons-material/Event";
+
+// NO PUT FOR POTLUCKS IN DB
 
 export default function EditEvent() {
   //ask about why empty object is needed
   const formValues = useForm({});
   const { push } = useHistory();
-  const [value, setValue] = React.useState(new Date());
 
   const handleEventSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +51,7 @@ export default function EditEvent() {
             marginTop: "30px",
           }}
         >
-          Edit an Event
+          Edit Event
         </Typography>
         <form
           style={{
@@ -64,47 +63,53 @@ export default function EditEvent() {
           }}
           onSubmit={handleEventSubmit}
         >
-          <label>
-            <TextField
-              onChange={formValues.handleChange}
-              value={formValues.values.name}
-              type="text"
-              name="name"
-              label="Name"
-              variant="outlined"
-            />
-          </label>
-          <label>
-            <TextField
-              onChange={formValues.handleChange}
-              value={formValues.values.name}
-              type="text"
-              name="location"
-              label="Location"
-              variant="outlined"
-            />
-          </label>
-          <label>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DateTimePicker
-                renderInput={(props) => <TextField {...props} />}
-                label="Date & Time"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-              />
-            </LocalizationProvider>
-          </label>
+          <TextField
+            onChange={formValues.handleChange}
+            value={formValues.values.name}
+            type="text"
+            name="name"
+            label="Name"
+            variant="outlined"
+          />
 
+          <TextField
+            onChange={formValues.handleChange}
+            value={formValues.values.name}
+            type="text"
+            name="location"
+            label="Location"
+            variant="outlined"
+          />
+
+          <TextField
+            name="date"
+            type="date"
+            label="Date"
+            onChange={formValues.handleChange}
+            value={formValues.values.date}
+            sx={{
+              width: "223px",
+            }}
+          />
+          <TextField
+            name="time"
+            type="time"
+            label="Time"
+            onChange={formValues.handleChange}
+            value={formValues.values.time}
+            sx={{
+              width: "223px",
+            }}
+          />
           <Button
             sx={{
               width: "100px",
               marginTop: "10px",
             }}
             variant="contained"
+            endIcon={<EventIcon />}
           >
-            Finish
+            Submit
           </Button>
         </form>
       </Paper>

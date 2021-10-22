@@ -13,8 +13,6 @@ const Signup = () => {
     axiosWithAuth()
       .post("/api/users/register", formValues.values)
       .then((res) => {
-        console.log("submitted, returned: ", res);
-
         push("/login");
       })
       .catch((err) => {
