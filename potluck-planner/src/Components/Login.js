@@ -3,13 +3,10 @@ import useForm from "../hooks/useForm";
 import { Button, Paper, Box, Typography, TextField } from "@mui/material";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router";
-import { LoggedInContext } from "../contexts/LoggedInContext";
 import { UserContext } from "../contexts/UserContext";
 const Login = () => {
   const formValues = useForm({});
   const { push } = useHistory();
-
-  const { setIsLoggedIn } = useContext(LoggedInContext);
   const { setUser } = useContext(UserContext);
 
   const handleUserLogin = (e) => {
@@ -20,7 +17,6 @@ const Login = () => {
         localStorage.setItem("token", res.data.token);
         setUser(res.data.message);
         push("/dashboard");
-        setIsLoggedIn(true);
       })
       .catch((err) => console.log(err));
   };
@@ -37,7 +33,7 @@ const Login = () => {
       <Paper
         elevation={10}
         sx={{
-          width: "50%",
+          width: "30%",
           height: "40vh",
           minHeight: "400px",
         }}
@@ -67,7 +63,6 @@ const Login = () => {
               name="username"
               type="username"
               label="Username"
-              id="outlined-required"
               required
             />
           </label>
@@ -79,7 +74,6 @@ const Login = () => {
               name="password"
               type="password"
               label="Password"
-              id="outlined-required"
               required
             />
           </label>
