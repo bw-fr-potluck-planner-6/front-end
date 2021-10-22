@@ -15,7 +15,6 @@ const Login = () => {
       .post("/api/users/login", formValues.values)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.message);
         setUser(res.data.message);
         //Keep both; will explain
         push("/dashboard");
