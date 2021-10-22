@@ -88,7 +88,7 @@ const Event = (props) => {
       </Typography>
       <Box
         sx={{
-          width: "35%",
+          width: "40%",
           display: "flex",
           flexFlow: "column",
           textAlign: "center",
