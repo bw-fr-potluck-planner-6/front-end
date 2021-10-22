@@ -27,26 +27,7 @@ const Header = () => {
           </Typography>
         </div>
         <div>
-          {localStorage.getItem("token") ? (
-            <ButtonGroup>
-              <Button
-                variant="contained"
-                component={Link}
-                to="/dashboard"
-                endIcon={<DashboardIcon />}
-              >
-                <Typography variant="h8">Dashboard</Typography>
-              </Button>
-              <Button
-                variant="contained"
-                component={Link}
-                to="/logout"
-                endIcon={<LogoutIcon />}
-              >
-                <Typography variant="h8">Logout</Typography>
-              </Button>
-            </ButtonGroup>
-          ) : (
+          {!localStorage.getItem("token") ? (
             <ButtonGroup>
               <Button
                 variant="contained"
@@ -63,6 +44,25 @@ const Header = () => {
                 endIcon={<LoginIcon />}
               >
                 <Typography variant="h8">Login</Typography>
+              </Button>
+            </ButtonGroup>
+          ) : (
+            <ButtonGroup>
+              <Button
+                variant="contained"
+                component={Link}
+                to="/dashboard"
+                endIcon={<DashboardIcon />}
+              >
+                <Typography variant="h8">Dashboard</Typography>
+              </Button>
+              <Button
+                variant="contained"
+                component={Link}
+                to="/logout"
+                endIcon={<LogoutIcon />}
+              >
+                <Typography variant="h8">Logout</Typography>
               </Button>
             </ButtonGroup>
           )}

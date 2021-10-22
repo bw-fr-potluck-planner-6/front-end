@@ -7,6 +7,7 @@ const Logout = () => {
   const { push } = useHistory();
   useEffect(() => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUser("");
     push("/login");
   });
