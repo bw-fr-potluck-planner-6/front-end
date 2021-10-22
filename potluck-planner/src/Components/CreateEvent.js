@@ -216,6 +216,7 @@ export default function CreateEvent() {
                 sx={{
                   display: "flex",
                   justifyContent: "flex-start",
+                  alignItems: "center",
                 }}
               >
                 <Checkbox
@@ -224,14 +225,7 @@ export default function CreateEvent() {
                     alignSelf: "center",
                   }}
                 ></Checkbox>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    marginTop: "30px",
-                  }}
-                >
-                  {array[idx]}
-                </Typography>
+                <Typography variant="h6">{array[idx]}</Typography>
               </Box>
             ))}
           </Paper>
