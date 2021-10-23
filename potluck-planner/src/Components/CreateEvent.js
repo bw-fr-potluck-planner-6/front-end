@@ -88,13 +88,13 @@ export default function CreateEvent() {
   return (
     <Box>
       <Grid container justifyContent={"space-evenly"}>
-        <Grid item lg={4} md={6} sm={8} xs={10} mt={17.5}>
+        <Grid item lg={4} sm={8} xs={10} mt={13}>
           <Paper
             elevation={20}
             sx={{
-              height: "75vh",
+              height: "70vh",
               minHeight: "500px",
-              paddingTop: "2.5%",
+              padding: "2.5% 0",
             }}
           >
             <Typography
@@ -163,7 +163,7 @@ export default function CreateEvent() {
               />
               <Button
                 sx={{
-                  width: "100px",
+                  width: "150px",
                   marginTop: "10px",
                 }}
                 variant="contained"
@@ -187,13 +187,13 @@ export default function CreateEvent() {
             </form>
           </Paper>
         </Grid>
-        <Grid item lg={4} md={6} sm={8} xs={10} mt={17.5}>
+        <Grid item lg={4} sm={8} xs={10} mt={13}>
           <Paper
             elevation={20}
             sx={{
-              height: "75vh",
+              height: "70vh",
               minHeight: "500px",
-              paddingTop: "2.5%",
+              padding: "2.5% 0",
             }}
           >
             <Typography
